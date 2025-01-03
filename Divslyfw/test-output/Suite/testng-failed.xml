@@ -3,12 +3,17 @@
 <suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
   <parameter name="headless" value="true"/>
   <parameter name="browser" value="edge"/>
+  <listeners>
+    <listener class-name="listeners.TestListener"/>
+    <listener class-name="listeners.MethodInterceptor"/>
+  </listeners>
   <test thread-count="5" name="Navigate to home page(failed)">
     <classes>
       <class name="Tests.NewUserRegistration">
         <methods>
-          <include name="registerNewUser" invocation-numbers="0"/>
+          <include name="returnBacktoHomePage"/>
           <include name="testCleanup"/>
+          <include name="navigateToUserSignupPage"/>
           <include name="testInit"/>
         </methods>
       </class> <!-- Tests.NewUserRegistration -->

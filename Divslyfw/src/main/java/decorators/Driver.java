@@ -2,7 +2,6 @@ package decorators;
 
 import org.openqa.selenium.By;
 
-import java.io.File;
 import java.util.List;
 
 public interface Driver {
@@ -14,5 +13,5 @@ public interface Driver {
     public List<Element> findElements(By locator);
     public void waitForAjax();
     public void waitUntilPageLoadsCompletely();
-    public File takescreenshot();
+    public String takescreenshot();
 }
