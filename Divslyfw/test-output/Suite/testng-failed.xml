@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
+  <parameter name="headless" value="true"/>
+  <parameter name="browser" value="edge"/>
+  <test thread-count="5" name="Navigate to home page(failed)">
+    <classes>
+      <class name="Tests.NewUserRegistration">
+        <methods>
+          <include name="registerNewUser" invocation-numbers="0"/>
+          <include name="testCleanup"/>
+          <include name="testInit"/>
+        </methods>
+      </class> <!-- Tests.NewUserRegistration -->
+    </classes>
+  </test> <!-- Navigate to home page(failed) -->
+</suite> <!-- Failed suite [Suite] -->
