@@ -3,8 +3,6 @@ package decorators;
 import org.openqa.selenium.By;
 
 import logsetup.Log;
-
-import java.io.File;
 import java.util.List;
 
 public class DriverLogger extends DriverDecorator {
@@ -45,7 +43,7 @@ public class DriverLogger extends DriverDecorator {
     }
     
     @Override
-    public File takescreenshot() {
+    public String takescreenshot() {
     	Log.info("Screenshot taken.");
 		return driver.takescreenshot();		
 	}

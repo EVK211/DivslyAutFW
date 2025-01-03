@@ -1,14 +1,8 @@
 package listeners;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Arrays;
 
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
-import org.openqa.selenium.io.FileHandler;
 import org.testng.ISuite;
 import org.testng.ISuiteListener;
 import org.testng.ITestContext;
@@ -18,10 +12,6 @@ import org.testng.ITestResult;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
-
-import constants.GlobalConstants;
-import decorators.Driver;
-import drivermanager.DriverManager;
 import logsetup.Log;
 import reports.ExtentReport;
 import reports.ReportManager;
@@ -74,20 +64,24 @@ public class TestListener implements ITestListener, ISuiteListener{
 		String testDesc=result.getMethod().getDescription();
 		try {						
 			//Take screenshot and copying to Screenshot folder in the project
-			String screenshotsFolderPath = GlobalConstants.SCREENSHOT_FOLDER + testDesc + ".png";
+			//String screenshotsFolderPath = GlobalConstants.SCREENSHOT_FOLDER + testDesc + ".png";
 			
 			//Call takescreenshot() method from DriverLogger class and copying the screenshot from source path to Screenshot folder 				
-			FileHandler.copy(ScreenshotUtility.getscreenshot(),new File(screenshotsFolderPath));
+			//FileHandler.copy(ScreenshotUtility.getscreenshot(),new File(screenshotsFolderPath));
 		
 			//Add screenshot from Screenshot folder to extent report
-			ReportManager.getExtentTest().addScreenCaptureFromPath(screenshotsFolderPath);
+			//ReportManager.getExtentTest().addScreenCaptureFromPath(screenshotsFolderPath);
+			ReportManager.getExtentTest().addScreenCaptureFromBase64String(ScreenshotUtility.getscreenshot());
 			
-		} catch (IllegalArgumentException | SecurityException | WebDriverException | IOException  e) {
+		} catch (IllegalArgumentException | SecurityException | WebDriverException  e) {
 			e.printStackTrace();
 		}
 		
 		ReportManager.getExtentTest().log(Status.FAIL, testDesc +" failed.");
-		ReportManager.getExtentTest().fail(Arrays.toString(result.getThrowable().getStackTrace()));//beautify stacktrace		
+		//ReportManager.getExtentTest().fail(Arrays.toString(result.getThrowable().getStackTrace()));//beautify stacktrace	
+		ReportManager.getExtentTest().fail(result.getThrowable().getCause());
+		ReportManager.getExtentTest().fail(result.getThrowable().getLocalizedMessage());
+		ReportManager.getExtentTest().fail(result.getThrowable().toString());
 		ReportManager.removeExtentTest();
 		Log.error("\""+result.getName()+"\" failed.", result.getThrowable());
 	}

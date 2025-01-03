@@ -13,6 +13,7 @@ import logsetup.Log;
 import utilities.PropertyFileReader;
 import webpages.HomePage;
 import webpages.MyAccountPage;
+import webpages.SignUpPage;
 import webpages.UserRegistrationPage;
 import webpages.pagesections.MainMenuSection;
 
@@ -20,7 +21,7 @@ public class BaseTest {
 	public Driver driver;
 
 	protected MyAccountPage myaccountsPage;
-	protected UserRegistrationPage userRegistrationPage;
+	protected SignUpPage signUpPage;
 	protected HomePage homePage;
 	protected MainMenuSection mainMenuSection;
 
@@ -43,7 +44,7 @@ public class BaseTest {
 
 		homePage = new HomePage();
 		myaccountsPage = new MyAccountPage();
-		userRegistrationPage = new UserRegistrationPage();
+		signUpPage = new SignUpPage();
 
 	}
 

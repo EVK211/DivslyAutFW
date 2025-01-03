@@ -1,8 +1,6 @@
 package decorators;
 
 import org.openqa.selenium.By;
-
-import java.io.File;
 import java.util.List;
 
 public class DriverDecorator implements Driver {
@@ -44,7 +42,7 @@ public class DriverDecorator implements Driver {
         driver.waitUntilPageLoadsCompletely();
     }
 
-	public File takescreenshot() {
+	public String takescreenshot() {
 		return driver.takescreenshot();		
 	}
 
